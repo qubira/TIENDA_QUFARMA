@@ -78,12 +78,14 @@ export default function TrabajadoresPage() {
         }
       />
 
-      <div className="border-b border-slate-200 bg-white px-6">
+      <div className="border-b border-slate-200 bg-white px-6 dark:border-slate-800 dark:bg-slate-900">
         <div className="flex gap-1">
           <button
             onClick={() => setTab("lista")}
             className={`border-b-2 px-3 py-2.5 text-sm font-medium ${
-              tab === "lista" ? "border-brand-600 text-brand-700" : "border-transparent text-slate-400"
+              tab === "lista"
+                ? "border-brand-600 text-brand-700 dark:border-brand-500 dark:text-brand-400"
+                : "border-transparent text-slate-400 dark:text-slate-500"
             }`}
           >
             <Users size={14} className="mr-1 inline" /> Personal
@@ -91,7 +93,9 @@ export default function TrabajadoresPage() {
           <button
             onClick={() => setTab("roles")}
             className={`border-b-2 px-3 py-2.5 text-sm font-medium ${
-              tab === "roles" ? "border-brand-600 text-brand-700" : "border-transparent text-slate-400"
+              tab === "roles"
+                ? "border-brand-600 text-brand-700 dark:border-brand-500 dark:text-brand-400"
+                : "border-transparent text-slate-400 dark:text-slate-500"
             }`}
           >
             Roles y permisos
@@ -105,9 +109,9 @@ export default function TrabajadoresPage() {
             <Loader2 className="h-7 w-7 animate-spin text-brand-500" />
           </div>
         ) : tab === "lista" ? (
-          <div className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm">
+          <div className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm dark:border-slate-800 dark:bg-slate-900">
             <table className="w-full text-sm">
-              <thead className="bg-slate-50 text-xs uppercase text-slate-500">
+              <thead className="bg-slate-50 text-xs uppercase text-slate-500 dark:bg-slate-800/60 dark:text-slate-400">
                 <tr>
                   <th className="px-4 py-3 text-left">Nombre</th>
                   <th className="px-4 py-3 text-left">Usuario</th>
@@ -117,12 +121,12 @@ export default function TrabajadoresPage() {
                   <th className="px-4 py-3 text-right">Acciones</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-100">
+              <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
                 {trabajadores.map((t) => (
                   <tr key={t.id} className={t.activo === false ? "opacity-50" : ""}>
                     <td className="px-4 py-3">
                       <div className="flex items-center gap-3">
-                        <div className="flex h-8 w-8 shrink-0 items-center justify-center overflow-hidden rounded-full bg-ocean-100 text-xs font-semibold text-ocean-700">
+                        <div className="flex h-8 w-8 shrink-0 items-center justify-center overflow-hidden rounded-full bg-ocean-100 text-xs font-semibold text-ocean-700 dark:bg-ocean-900 dark:text-ocean-300">
                           {t.fotoUrl ? (
                             <img src={t.fotoUrl} alt="" className="h-full w-full object-cover" />
                           ) : (
@@ -132,20 +136,22 @@ export default function TrabajadoresPage() {
                             </span>
                           )}
                         </div>
-                        <span className="font-medium text-slate-800">
+                        <span className="font-medium text-slate-800 dark:text-slate-100">
                           {t.nombres} {t.apellidos}
                         </span>
                       </div>
                     </td>
-                    <td className="px-4 py-3 text-slate-600">{t.username}</td>
-                    <td className="px-4 py-3 text-slate-600">{t.cargo}</td>
+                    <td className="px-4 py-3 text-slate-600 dark:text-slate-400">{t.username}</td>
+                    <td className="px-4 py-3 text-slate-600 dark:text-slate-400">{t.cargo}</td>
                     <td className="px-4 py-3">
-                      <span className="badge bg-ocean-50 text-ocean-700">{t.role.nombre}</span>
+                      <span className="badge bg-ocean-50 text-ocean-700 dark:bg-ocean-900 dark:text-ocean-300">{t.role.nombre}</span>
                     </td>
                     <td className="px-4 py-3">
                       <span
                         className={`badge ${
-                          t.activo === false ? "bg-slate-100 text-slate-500" : "bg-brand-50 text-brand-700"
+                          t.activo === false
+                            ? "bg-slate-100 text-slate-500 dark:bg-slate-800 dark:text-slate-400"
+                            : "bg-brand-50 text-brand-700 dark:bg-brand-500/10 dark:text-brand-400"
                         }`}
                       >
                         {t.activo === false ? "Inactivo" : "Activo"}
@@ -156,7 +162,7 @@ export default function TrabajadoresPage() {
                         <button
                           title="Restablecer contraseña"
                           onClick={() => setResetting(t)}
-                          className="rounded-md p-1.5 text-slate-500 hover:bg-slate-100"
+                          className="rounded-md p-1.5 text-slate-500 hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-800"
                         >
                           <KeyRound size={16} />
                         </button>

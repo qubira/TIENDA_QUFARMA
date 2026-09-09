@@ -6,6 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="noindex, nofollow" />
     <title>QUFARMA · Panel Interno</title>
+    <script>
+      // Aplica el tema guardado antes del primer paint para evitar el
+      // parpadeo de tema incorrecto (FOUC). Solo lee/escribe la preferencia
+      // de UI, nunca datos de sesión.
+      (function () {
+        try {
+          var stored = localStorage.getItem("qufarma-theme");
+          var dark = stored ? stored === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
+          if (dark) document.documentElement.classList.add("dark");
+        } catch (e) {}
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

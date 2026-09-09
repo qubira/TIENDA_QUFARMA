@@ -1,6 +1,7 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { Toaster } from "sonner";
 import { AuthProvider } from "./context/AuthContext";
+import { ThemeProvider } from "./context/ThemeContext";
 import { ProtectedRoute, RequirePermission } from "./components/ProtectedRoute";
 import Layout from "./components/Layout";
 import HomeRedirect from "./components/HomeRedirect";
@@ -17,6 +18,7 @@ import TrabajadoresPage from "./pages/trabajadores/TrabajadoresPage";
 export default function App() {
   return (
     <BrowserRouter>
+      <ThemeProvider>
       <AuthProvider>
         <Toaster position="top-right" richColors closeButton />
         <Routes>
@@ -86,6 +88,7 @@ export default function App() {
           <Route path="*" element={<Navigate to="/404" replace />} />
         </Routes>
       </AuthProvider>
+      </ThemeProvider>
     </BrowserRouter>
   );
 }

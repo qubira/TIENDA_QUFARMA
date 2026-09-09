@@ -111,7 +111,7 @@ export default function CajaPage() {
       <div className="flex-1 overflow-y-auto p-6">
         <div className="grid gap-6 lg:grid-cols-3">
           <div className="card p-5 lg:col-span-1">
-            <div className="flex items-center gap-2 text-slate-500">
+            <div className="flex items-center gap-2 text-slate-500 dark:text-slate-400">
               <Wallet size={18} />
               <h2 className="text-sm font-bold uppercase tracking-wide">Estado actual</h2>
             </div>
@@ -122,14 +122,14 @@ export default function CajaPage() {
               </div>
             ) : caja ? (
               <div className="mt-4 space-y-3">
-                <span className="badge bg-brand-50 text-brand-700">
+                <span className="badge bg-brand-50 text-brand-700 dark:bg-brand-500/10 dark:text-brand-400">
                   <LockOpen size={12} /> Caja abierta
                 </span>
-                <div className="text-sm text-slate-600">
+                <div className="text-sm text-slate-600 dark:text-slate-400">
                   <p>
-                    Apertura: <span className="font-medium">{formatCurrency(caja.montoApertura)}</span>
+                    Apertura: <span className="font-medium text-slate-800 dark:text-slate-200">{formatCurrency(caja.montoApertura)}</span>
                   </p>
-                  <p className="text-xs text-slate-400">{formatDateTime(caja.aperturaAt)}</p>
+                  <p className="text-xs text-slate-400 dark:text-slate-500">{formatDateTime(caja.aperturaAt)}</p>
                 </div>
                 <button
                   className="btn-danger w-full"
@@ -143,7 +143,7 @@ export default function CajaPage() {
               </div>
             ) : (
               <div className="mt-4 space-y-3">
-                <span className="badge bg-slate-100 text-slate-500">
+                <span className="badge bg-slate-100 text-slate-500 dark:bg-slate-800 dark:text-slate-400">
                   <Lock size={12} /> Sin caja abierta
                 </span>
                 <button
@@ -161,16 +161,18 @@ export default function CajaPage() {
 
           <div className="card p-5 lg:col-span-2">
             <div className="flex items-center justify-between">
-              <h2 className="text-sm font-bold uppercase tracking-wide text-slate-500">
+              <h2 className="text-sm font-bold uppercase tracking-wide text-slate-500 dark:text-slate-400">
                 Resumen de ventas
               </h2>
-              <div className="flex gap-1 rounded-lg border border-slate-200 p-0.5">
+              <div className="flex gap-1 rounded-lg border border-slate-200 p-0.5 dark:border-slate-700">
                 {(["dia", "mes", "anio"] as const).map((g) => (
                   <button
                     key={g}
                     onClick={() => setAgrupar(g)}
                     className={`rounded-md px-2.5 py-1 text-xs font-medium ${
-                      agrupar === g ? "bg-brand-50 text-brand-700" : "text-slate-400"
+                      agrupar === g
+                        ? "bg-brand-50 text-brand-700 dark:bg-brand-500/10 dark:text-brand-400"
+                        : "text-slate-400 dark:text-slate-500"
                     }`}
                   >
                     {g === "dia" ? "Día" : g === "mes" ? "Mes" : "Año"}
@@ -189,7 +191,7 @@ export default function CajaPage() {
         </div>
 
         <div className="card mt-6 p-5">
-          <h2 className="mb-3 text-sm font-bold uppercase tracking-wide text-slate-500">
+          <h2 className="mb-3 text-sm font-bold uppercase tracking-wide text-slate-500 dark:text-slate-400">
             Historial de cierres
           </h2>
           {loadingHistorial ? (
@@ -197,11 +199,11 @@ export default function CajaPage() {
               <Loader2 className="h-6 w-6 animate-spin text-brand-500" />
             </div>
           ) : historial.length === 0 ? (
-            <p className="py-6 text-center text-sm text-slate-400">Aún no hay cierres registrados.</p>
+            <p className="py-6 text-center text-sm text-slate-400 dark:text-slate-500">Aún no hay cierres registrados.</p>
           ) : (
-            <div className="overflow-hidden rounded-lg border border-slate-200">
+            <div className="overflow-hidden rounded-lg border border-slate-200 dark:border-slate-800">
               <table className="w-full text-sm">
-                <thead className="bg-slate-50 text-xs uppercase text-slate-500">
+                <thead className="bg-slate-50 text-xs uppercase text-slate-500 dark:bg-slate-800/60 dark:text-slate-400">
                   <tr>
                     <th className="px-3 py-2 text-left">Apertura</th>
                     <th className="px-3 py-2 text-left">Cierre</th>
@@ -211,27 +213,27 @@ export default function CajaPage() {
                     <th className="px-3 py-2 text-right">Diferencia</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-slate-100">
+                <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
                   {historial.map((c) => (
                     <tr key={c.id}>
-                      <td className="px-3 py-2 text-slate-500">{formatDateTime(c.aperturaAt)}</td>
-                      <td className="px-3 py-2 text-slate-500">{formatDateTime(c.cierreAt)}</td>
-                      <td className="px-3 py-2 text-right text-slate-700">
+                      <td className="px-3 py-2 text-slate-500 dark:text-slate-400">{formatDateTime(c.aperturaAt)}</td>
+                      <td className="px-3 py-2 text-slate-500 dark:text-slate-400">{formatDateTime(c.cierreAt)}</td>
+                      <td className="px-3 py-2 text-right text-slate-700 dark:text-slate-200">
                         {formatCurrency(c.montoApertura)}
                       </td>
-                      <td className="px-3 py-2 text-right text-slate-700">
+                      <td className="px-3 py-2 text-right text-slate-700 dark:text-slate-200">
                         {formatCurrency(c.efectivoEsperado)}
                       </td>
-                      <td className="px-3 py-2 text-right text-slate-700">
+                      <td className="px-3 py-2 text-right text-slate-700 dark:text-slate-200">
                         {formatCurrency(c.efectivoContado)}
                       </td>
                       <td
                         className={`px-3 py-2 text-right font-semibold ${
                           !c.diferencia
-                            ? "text-slate-500"
+                            ? "text-slate-500 dark:text-slate-400"
                             : c.diferencia > 0
-                            ? "text-ocean-600"
-                            : "text-rose-600"
+                            ? "text-ocean-600 dark:text-ocean-400"
+                            : "text-rose-600 dark:text-rose-400"
                         }`}
                       >
                         {formatCurrency(c.diferencia)}

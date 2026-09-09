@@ -47,7 +47,7 @@ export default function ResetPasswordModal({
           />
         </div>
         {error && (
-          <div className="rounded-lg bg-rose-50 px-3 py-2 text-sm text-rose-600">{error}</div>
+          <div className="rounded-lg bg-rose-50 px-3 py-2 text-sm text-rose-600 dark:bg-rose-950/40 dark:text-rose-400">{error}</div>
         )}
         <div className="flex gap-2 pt-1">
           <button type="button" onClick={onClose} className="btn-secondary flex-1">

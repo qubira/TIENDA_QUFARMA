@@ -35,7 +35,7 @@ export default function CerrarCajaModal({
   return (
     <Modal title="Cerrar caja" onClose={onClose}>
       <form onSubmit={handleSubmit} className="space-y-3">
-        <div className="rounded-lg bg-slate-50 px-3 py-2 text-sm text-slate-600">
+        <div className="rounded-lg bg-slate-50 px-3 py-2 text-sm text-slate-600 dark:bg-slate-800 dark:text-slate-300">
           <p>Monto de apertura: <span className="font-medium">{formatCurrency(caja.montoApertura)}</span></p>
         </div>
 
@@ -58,10 +58,10 @@ export default function CerrarCajaModal({
           <div
             className={`animate-fade-in rounded-lg px-3 py-2 text-sm font-medium ${
               diferenciaPreview === 0
-                ? "bg-brand-50 text-brand-700"
+                ? "bg-brand-50 text-brand-700 dark:bg-brand-500/10 dark:text-brand-400"
                 : diferenciaPreview > 0
-                ? "bg-ocean-50 text-ocean-700"
-                : "bg-rose-50 text-rose-700"
+                ? "bg-ocean-50 text-ocean-700 dark:bg-ocean-500/10 dark:text-ocean-400"
+                : "bg-rose-50 text-rose-700 dark:bg-rose-950/40 dark:text-rose-400"
             }`}
           >
             {diferenciaPreview === 0
@@ -82,7 +82,7 @@ export default function CerrarCajaModal({
         </div>
 
         {error && (
-          <div className="rounded-lg bg-rose-50 px-3 py-2 text-sm text-rose-600">{error}</div>
+          <div className="rounded-lg bg-rose-50 px-3 py-2 text-sm text-rose-600 dark:bg-rose-950/40 dark:text-rose-400">{error}</div>
         )}
 
         <div className="flex gap-2 pt-1">

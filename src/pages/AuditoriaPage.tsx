@@ -100,7 +100,7 @@ export default function AuditoriaPage() {
         }
       />
 
-      <div className="flex flex-wrap items-end gap-2 border-b border-slate-200 bg-white px-6 py-3">
+      <div className="flex flex-wrap items-end gap-2 border-b border-slate-200 bg-white px-6 py-3 dark:border-slate-800 dark:bg-slate-900">
         <div>
           <label className="label">Desde</label>
           <input type="date" className="input w-40" value={desde} onChange={(e) => setDesde(e.target.value)} />
@@ -138,14 +138,14 @@ export default function AuditoriaPage() {
             <Loader2 className="h-7 w-7 animate-spin text-brand-500" />
           </div>
         ) : logs.length === 0 ? (
-          <div className="flex flex-col items-center justify-center gap-2 py-16 text-slate-300">
+          <div className="flex flex-col items-center justify-center gap-2 py-16 text-slate-300 dark:text-slate-700">
             <ScrollText size={40} />
-            <p className="text-sm text-slate-400">Sin registros para los filtros seleccionados.</p>
+            <p className="text-sm text-slate-400 dark:text-slate-500">Sin registros para los filtros seleccionados.</p>
           </div>
         ) : (
-          <div className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm">
+          <div className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm dark:border-slate-800 dark:bg-slate-900">
             <table className="w-full text-sm">
-              <thead className="bg-slate-50 text-xs uppercase text-slate-500">
+              <thead className="bg-slate-50 text-xs uppercase text-slate-500 dark:bg-slate-800/60 dark:text-slate-400">
                 <tr>
                   <th className="px-4 py-3 text-left">Fecha</th>
                   <th className="px-4 py-3 text-left">Usuario</th>
@@ -154,20 +154,20 @@ export default function AuditoriaPage() {
                   <th className="px-4 py-3 text-left">Detalle</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-100">
+              <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
                 {logs.map((log) => (
                   <tr key={log.id}>
-                    <td className="whitespace-nowrap px-4 py-3 text-slate-500">
+                    <td className="whitespace-nowrap px-4 py-3 text-slate-500 dark:text-slate-400">
                       {formatDateTime(log.createdAt)}
                     </td>
-                    <td className="px-4 py-3 text-slate-700">
+                    <td className="px-4 py-3 text-slate-700 dark:text-slate-300">
                       {log.trabajador ? `${log.trabajador.nombres} ${log.trabajador.apellidos}` : "—"}
                     </td>
                     <td className="px-4 py-3">
-                      <span className="badge bg-ocean-50 text-ocean-700">{log.accion}</span>
+                      <span className="badge bg-ocean-50 text-ocean-700 dark:bg-ocean-900 dark:text-ocean-300">{log.accion}</span>
                     </td>
-                    <td className="px-4 py-3 text-slate-600">{log.modulo}</td>
-                    <td className="max-w-xs truncate px-4 py-3 text-xs text-slate-400">
+                    <td className="px-4 py-3 text-slate-600 dark:text-slate-400">{log.modulo}</td>
+                    <td className="max-w-xs truncate px-4 py-3 text-xs text-slate-400 dark:text-slate-500">
                       {log.detalle ? JSON.stringify(log.detalle) : "—"}
                     </td>
                   </tr>
@@ -178,8 +178,8 @@ export default function AuditoriaPage() {
         )}
       </div>
 
-      <div className="flex items-center justify-between border-t border-slate-200 bg-white px-6 py-3">
-        <p className="text-xs text-slate-400">
+      <div className="flex items-center justify-between border-t border-slate-200 bg-white px-6 py-3 dark:border-slate-800 dark:bg-slate-900">
+        <p className="text-xs text-slate-400 dark:text-slate-500">
           {total} registro{total !== 1 ? "s" : ""} — página {page} de {totalPages}
         </p>
         <div className="flex gap-2">

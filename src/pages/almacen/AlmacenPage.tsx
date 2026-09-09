@@ -95,7 +95,7 @@ export default function AlmacenPage() {
         }
       />
 
-      <div className="flex flex-wrap items-center gap-2 border-b border-slate-200 bg-white px-6 py-3">
+      <div className="flex flex-wrap items-center gap-2 border-b border-slate-200 bg-white px-6 py-3 dark:border-slate-800 dark:bg-slate-900">
         <div className="relative w-64">
           <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
           <input
@@ -120,16 +120,16 @@ export default function AlmacenPage() {
           <option value="vencido">Vencido</option>
         </select>
 
-        <div className="ml-auto flex items-center gap-1 rounded-lg border border-slate-200 p-0.5">
+        <div className="ml-auto flex items-center gap-1 rounded-lg border border-slate-200 p-0.5 dark:border-slate-700">
           <button
             onClick={() => setView("tabla")}
-            className={`rounded-md p-1.5 ${view === "tabla" ? "bg-brand-50 text-brand-700" : "text-slate-400"}`}
+            className={`rounded-md p-1.5 ${view === "tabla" ? "bg-brand-50 text-brand-700 dark:bg-brand-500/10 dark:text-brand-400" : "text-slate-400 dark:text-slate-500"}`}
           >
             <List size={16} />
           </button>
           <button
             onClick={() => setView("tarjetas")}
-            className={`rounded-md p-1.5 ${view === "tarjetas" ? "bg-brand-50 text-brand-700" : "text-slate-400"}`}
+            className={`rounded-md p-1.5 ${view === "tarjetas" ? "bg-brand-50 text-brand-700 dark:bg-brand-500/10 dark:text-brand-400" : "text-slate-400 dark:text-slate-500"}`}
           >
             <LayoutGrid size={16} />
           </button>
@@ -142,14 +142,14 @@ export default function AlmacenPage() {
             <Loader2 className="h-7 w-7 animate-spin text-brand-500" />
           </div>
         ) : productos.length === 0 ? (
-          <div className="flex flex-col items-center justify-center gap-2 py-16 text-slate-300">
+          <div className="flex flex-col items-center justify-center gap-2 py-16 text-slate-300 dark:text-slate-700">
             <Package size={40} />
-            <p className="text-sm text-slate-400">No hay productos que coincidan con los filtros.</p>
+            <p className="text-sm text-slate-400 dark:text-slate-500">No hay productos que coincidan con los filtros.</p>
           </div>
         ) : view === "tabla" ? (
-          <div className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm">
+          <div className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm dark:border-slate-800 dark:bg-slate-900">
             <table className="w-full text-sm">
-              <thead className="bg-slate-50 text-xs uppercase text-slate-500">
+              <thead className="bg-slate-50 text-xs uppercase text-slate-500 dark:bg-slate-800/60 dark:text-slate-400">
                 <tr>
                   <th className="px-4 py-3 text-left">Producto</th>
                   <th className="px-4 py-3 text-left">Categoría</th>
@@ -159,29 +159,29 @@ export default function AlmacenPage() {
                   <th className="px-4 py-3 text-right">Acciones</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-100">
+              <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
                 {productos.map((p) => (
                   <tr key={p.id} className={!p.activo ? "opacity-50" : ""}>
                     <td className="px-4 py-3">
                       <div className="flex items-center gap-3">
-                        <div className="flex h-9 w-9 shrink-0 items-center justify-center overflow-hidden rounded-lg bg-slate-100">
+                        <div className="flex h-9 w-9 shrink-0 items-center justify-center overflow-hidden rounded-lg bg-slate-100 dark:bg-slate-800">
                           {p.fotoUrl ? (
                             <img src={p.fotoUrl} alt="" className="h-full w-full object-cover" />
                           ) : (
-                            <Package size={16} className="text-slate-300" />
+                            <Package size={16} className="text-slate-300 dark:text-slate-600" />
                           )}
                         </div>
                         <div className="min-w-0">
-                          <p className="truncate font-medium text-slate-800">{p.nombreComercial}</p>
-                          <p className="truncate text-xs text-slate-400">{p.presentacion}</p>
+                          <p className="truncate font-medium text-slate-800 dark:text-slate-100">{p.nombreComercial}</p>
+                          <p className="truncate text-xs text-slate-400 dark:text-slate-500">{p.presentacion}</p>
                         </div>
                       </div>
                     </td>
-                    <td className="px-4 py-3 text-slate-600">{p.categoria?.nombre}</td>
-                    <td className="px-4 py-3 text-right font-medium text-slate-700">
+                    <td className="px-4 py-3 text-slate-600 dark:text-slate-400">{p.categoria?.nombre}</td>
+                    <td className="px-4 py-3 text-right font-medium text-slate-700 dark:text-slate-200">
                       {formatCurrency(p.precioVenta)}
                     </td>
-                    <td className="px-4 py-3 text-right text-slate-700">{p.stockTotal ?? 0}</td>
+                    <td className="px-4 py-3 text-right text-slate-700 dark:text-slate-200">{p.stockTotal ?? 0}</td>
                     <td className="px-4 py-3">
                       <ProductoBadges producto={p} />
                     </td>
@@ -190,14 +190,14 @@ export default function AlmacenPage() {
                         <button
                           title="Lotes"
                           onClick={() => setLotesProducto(p)}
-                          className="rounded-md p-1.5 text-slate-500 hover:bg-slate-100"
+                          className="rounded-md p-1.5 text-slate-500 hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-800"
                         >
                           <Boxes size={16} />
                         </button>
                         <button
                           title="Movimiento"
                           onClick={() => setMovimientoProducto(p)}
-                          className="rounded-md p-1.5 text-slate-500 hover:bg-slate-100"
+                          className="rounded-md p-1.5 text-slate-500 hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-800"
                         >
                           <ClipboardEdit size={16} />
                         </button>
@@ -227,24 +227,24 @@ export default function AlmacenPage() {
                 key={p.id}
                 className={`card flex flex-col overflow-hidden ${!p.activo ? "opacity-50" : ""}`}
               >
-                <div className="flex h-28 items-center justify-center bg-slate-50">
+                <div className="flex h-28 items-center justify-center bg-slate-50 dark:bg-slate-800">
                   {p.fotoUrl ? (
                     <img src={p.fotoUrl} alt="" className="h-full w-full object-cover" />
                   ) : (
-                    <Package className="h-8 w-8 text-slate-300" />
+                    <Package className="h-8 w-8 text-slate-300 dark:text-slate-600" />
                   )}
                 </div>
                 <div className="flex flex-1 flex-col gap-2 p-3">
-                  <p className="line-clamp-2 text-sm font-semibold text-slate-800">
+                  <p className="line-clamp-2 text-sm font-semibold text-slate-800 dark:text-slate-100">
                     {p.nombreComercial}
                   </p>
-                  <p className="text-xs text-slate-400">{p.categoria?.nombre}</p>
+                  <p className="text-xs text-slate-400 dark:text-slate-500">{p.categoria?.nombre}</p>
                   <ProductoBadges producto={p} />
                   <div className="mt-auto flex items-center justify-between pt-1">
-                    <span className="text-sm font-bold text-brand-700">
+                    <span className="text-sm font-bold text-brand-700 dark:text-brand-400">
                       {formatCurrency(p.precioVenta)}
                     </span>
-                    <span className="text-xs text-slate-400">Stock: {p.stockTotal ?? 0}</span>
+                    <span className="text-xs text-slate-400 dark:text-slate-500">Stock: {p.stockTotal ?? 0}</span>
                   </div>
                   <div className="flex gap-1.5 pt-1">
                     <button

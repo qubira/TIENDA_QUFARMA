@@ -195,7 +195,7 @@ export default function CheckoutModal({
         </div>
 
         {errorMessage && (
-          <div className="animate-fade-in rounded-lg bg-rose-50 px-3 py-2 text-sm text-rose-600">
+          <div className="animate-fade-in rounded-lg bg-rose-50 px-3 py-2 text-sm text-rose-600 dark:bg-rose-950/40 dark:text-rose-400">
             {errorMessage}
           </div>
         )}

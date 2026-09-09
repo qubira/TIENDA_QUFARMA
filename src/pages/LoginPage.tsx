@@ -4,6 +4,7 @@ import { Cross, Loader2, Lock, User, Eye, EyeOff } from "lucide-react";
 import { useAuth } from "../context/AuthContext";
 import { api } from "../lib/api";
 import type { PageModule, Trabajador } from "../lib/types";
+import ThemeToggle from "../components/ThemeToggle";
 
 const HOME_BY_PRIORITY: PageModule[] = [
   "VENTA",
@@ -56,7 +57,8 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-brand-900 via-brand-800 to-ocean-900 p-4">
+    <div className="relative flex min-h-screen items-center justify-center bg-gradient-to-br from-brand-900 via-brand-800 to-ocean-900 p-4">
+      <ThemeToggle className="absolute right-4 top-4 text-white/70 hover:bg-white/10 hover:text-white dark:text-white/70 dark:hover:bg-white/10 dark:hover:text-white" />
       <div className="w-full max-w-sm animate-fade-in">
         <div className="mb-6 flex flex-col items-center gap-3 text-white">
           <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-white/10 backdrop-blur">
@@ -125,7 +127,7 @@ export default function LoginPage() {
           </div>
 
           {error && (
-            <div className="animate-fade-in rounded-lg bg-rose-50 px-3 py-2 text-sm text-rose-600">
+            <div className="animate-fade-in rounded-lg bg-rose-50 px-3 py-2 text-sm text-rose-600 dark:bg-rose-950/40 dark:text-rose-400">
               {error}
             </div>
           )}

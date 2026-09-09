@@ -110,7 +110,7 @@ export default function VentaPage() {
   return (
     <div className="flex h-full">
       <div className="flex flex-1 flex-col overflow-hidden">
-        <div className="border-b border-slate-200 bg-white px-6 py-4">
+        <div className="border-b border-slate-200 bg-white px-6 py-4 dark:border-slate-800 dark:bg-slate-900">
           <div className="relative max-w-xl">
             <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
             {searching && (
@@ -128,14 +128,14 @@ export default function VentaPage() {
 
         <div className="flex-1 overflow-y-auto p-6">
           {!debouncedQuery.trim() ? (
-            <div className="flex h-full flex-col items-center justify-center gap-2 text-center text-slate-300">
+            <div className="flex h-full flex-col items-center justify-center gap-2 text-center text-slate-300 dark:text-slate-700">
               <PackageSearch size={48} />
-              <p className="text-sm text-slate-400">Escribe para buscar productos y agrégalos al carrito</p>
+              <p className="text-sm text-slate-400 dark:text-slate-500">Escribe para buscar productos y agrégalos al carrito</p>
             </div>
           ) : results.length === 0 && !searching ? (
-            <div className="flex h-full flex-col items-center justify-center gap-2 text-center text-slate-300">
+            <div className="flex h-full flex-col items-center justify-center gap-2 text-center text-slate-300 dark:text-slate-700">
               <PackageSearch size={48} />
-              <p className="text-sm text-slate-400">Sin resultados para "{debouncedQuery}"</p>
+              <p className="text-sm text-slate-400 dark:text-slate-500">Sin resultados para "{debouncedQuery}"</p>
             </div>
           ) : (
             <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">

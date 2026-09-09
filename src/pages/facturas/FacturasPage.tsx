@@ -46,7 +46,7 @@ export default function FacturasPage() {
     <div className="flex h-full flex-col">
       <PageHeader title="Facturas" subtitle="Comprobantes emitidos: boletas y facturas" />
 
-      <div className="flex flex-wrap items-end gap-2 border-b border-slate-200 bg-white px-6 py-3">
+      <div className="flex flex-wrap items-end gap-2 border-b border-slate-200 bg-white px-6 py-3 dark:border-slate-800 dark:bg-slate-900">
         <div>
           <label className="label">Buscar</label>
           <div className="relative w-52">
@@ -94,14 +94,14 @@ export default function FacturasPage() {
             <Loader2 className="h-7 w-7 animate-spin text-brand-500" />
           </div>
         ) : comprobantes.length === 0 ? (
-          <div className="flex flex-col items-center justify-center gap-2 py-16 text-slate-300">
+          <div className="flex flex-col items-center justify-center gap-2 py-16 text-slate-300 dark:text-slate-700">
             <FileText size={40} />
-            <p className="text-sm text-slate-400">No hay comprobantes para los filtros seleccionados.</p>
+            <p className="text-sm text-slate-400 dark:text-slate-500">No hay comprobantes para los filtros seleccionados.</p>
           </div>
         ) : (
-          <div className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm">
+          <div className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm dark:border-slate-800 dark:bg-slate-900">
             <table className="w-full text-sm">
-              <thead className="bg-slate-50 text-xs uppercase text-slate-500">
+              <thead className="bg-slate-50 text-xs uppercase text-slate-500 dark:bg-slate-800/60 dark:text-slate-400">
                 <tr>
                   <th className="px-4 py-3 text-left">N.º</th>
                   <th className="px-4 py-3 text-left">Tipo</th>
@@ -111,28 +111,28 @@ export default function FacturasPage() {
                   <th className="px-4 py-3 text-left">Estado</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-100">
+              <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
                 {comprobantes.map((c) => (
                   <tr
                     key={c.id}
                     onClick={() => setSelected(c.id)}
-                    className="cursor-pointer hover:bg-slate-50"
+                    className="cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800/60"
                   >
-                    <td className="px-4 py-3 font-mono text-xs font-medium text-slate-700">
+                    <td className="px-4 py-3 font-mono text-xs font-medium text-slate-700 dark:text-slate-300">
                       {c.serie}-{String(c.numero).padStart(6, "0")}
                     </td>
-                    <td className="px-4 py-3 text-slate-600">{c.tipo}</td>
-                    <td className="px-4 py-3 text-slate-600">{c.venta?.cliente?.nombre ?? "Varios"}</td>
-                    <td className="px-4 py-3 text-slate-500">{formatDateTime(c.createdAt)}</td>
-                    <td className="px-4 py-3 text-right font-medium text-slate-700">
+                    <td className="px-4 py-3 text-slate-600 dark:text-slate-400">{c.tipo}</td>
+                    <td className="px-4 py-3 text-slate-600 dark:text-slate-400">{c.venta?.cliente?.nombre ?? "Varios"}</td>
+                    <td className="px-4 py-3 text-slate-500 dark:text-slate-400">{formatDateTime(c.createdAt)}</td>
+                    <td className="px-4 py-3 text-right font-medium text-slate-700 dark:text-slate-200">
                       {formatCurrency(c.venta?.total)}
                     </td>
                     <td className="px-4 py-3">
                       <span
                         className={`badge ${
                           c.estado === "ANULADA"
-                            ? "bg-rose-100 text-rose-700"
-                            : "bg-brand-50 text-brand-700"
+                            ? "bg-rose-100 text-rose-700 dark:bg-rose-950/50 dark:text-rose-400"
+                            : "bg-brand-50 text-brand-700 dark:bg-brand-500/10 dark:text-brand-400"
                         }`}
                       >
                         {c.estado}
